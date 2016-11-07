@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_calc"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+
+        android:orientation="horizontal"
+        android:columnCount="4"
+        android:layout_gravity="center"
+        tools:context="com.cs510sla.handsfreecalculator.CalcActivity">
+
+        <TextView
+            android:id="@+id/answerText"
+            android:text="Answer111111111111111111111111111111111111111"
+            android:layout_columnSpan="4"
+            android:layout_gravity="fill"
+            android:background="@android:drawable/bottom_bar"
+            android:layout_height="100dp" />
+        <Button
+            android:id="@+id/clearButton"
+            android:text="@string/clear"/>
+        <Button
+            android:id="@+id/posNegButton"
+            android:text="@string/pos_neg"/>
+        <Button
+            android:id="@+id/percentButton"
+            android:text="@string/percent"/>
+        <Button
+            android:id="@+id/divButton"
+            android:text="@string/divide"/>
+        <Button
+            android:id="@+id/7Button"
+            android:text="@string/_7"/>
+        <Button
+            android:id="@+id/8Button"
+            android:text="@string/_8"/>
+        <Button
+            android:text="@string/_9"/>
+        <Button
+            android:text="@string/times"/>
+        <Button
+            android:text="@string/_4"/>
+        <Button
+            android:text="@string/_5"/>
+        <Button
+            android:text="@string/_6"/>
+        <Button
+            android:text="@string/minus"/>
+        <Button
+            android:text="@string/_1"/>
+        <Button
+            android:text="@string/_2"/>
+        <Button
+            android:text="@string/_3"/>
+        <Button
+            android:text="@string/plus"/>
+        <Button
+            android:text="@string/_0"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill"/>
+        <Button
+            android:text="@string/decimal"/>
+        <Button
+            android:text="@string/equals"/>
+        <Button
+            android:text="@string/voice_button"
+            android:layout_columnSpan="4"
+            android:layout_gravity="fill"
+            android:layout_marginTop="60dp"/>
+
+
+    </GridLayout>
+</LinearLayout>
+
+
+
+
+
+
