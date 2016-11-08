@@ -75,6 +75,65 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
 
+            case R.id.num0Button:
+                //Todo:implement
+                break;
+            case R.id.num1Button:
+                //Todo:implement
+                break;
+            case R.id.num2Button:
+                //Todo:implement
+                break;
+            case R.id.num3Button:
+                //Todo:implement
+                break;
+            case R.id.num4Button:
+                //Todo:implement
+                break;
+            case R.id.num5Button:
+                //Todo:implement
+                break;
+            case R.id.num6Button:
+                //Todo:implement
+                break;
+            case R.id.num7Button:
+                //Todo:implement
+                break;
+            case R.id.num8Button:
+                //Todo:implement
+                break;
+            case R.id.num9Button:
+                //Todo:implement
+                break;
+            case R.id.equalsButton:
+                //Todo:implement
+                break;
+            case R.id.plusButton:
+                //Todo:implement
+                break;
+            case R.id.minusButton:
+                //Todo:implement
+                break;
+            case R.id.timesButton:
+                //Todo:implement
+                break;
+            case R.id.divButton:
+                //Todo:implement
+                break;
+            case R.id.percentButton:
+                //Todo:implement
+                break;
+            case R.id.posNegButton:
+                //Todo:implement
+                break;
+            case R.id.clearButton:
+                //Todo:implement
+                break;
+            case R.id.voiceButton:
+                //Todo:implement
+                break;
+
+
         }
     }
 }
