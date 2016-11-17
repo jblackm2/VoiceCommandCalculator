@@ -4,14 +4,34 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class CalcActivity extends AppCompatActivity implements View.OnClickListener{
+
+    private TextView answerText;
+    private String screenFormula;
+
+    public void setAnswerText(String text) {
+        String currentAnswerText = getAnswerText();
+        answerText.setText(currentAnswerText + text);
+    }
+
+    public String getAnswerText() {
+        return (String) answerText.getText();
+    }
+
+    public CalcActivity(){
+        answerText = null;
+        screenFormula = "";
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
+
+        CalcActivity calcActivity = new CalcActivity();
 
         Button zeroButton = (Button) findViewById(R.id.num0Button);
         zeroButton.setOnClickListener(this);
@@ -69,13 +89,21 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
 
         Button voiceButton = (Button) findViewById(R.id.voiceButton);
         voiceButton.setOnClickListener(this);
+
+        String screenFormula = "";
+
+        TextView answerText = (TextView) findViewById(R.id.answerText);
+
+        answerText.setText(screenFormula);
     }
 
     @Override
     public void onClick(View view) {
+        Button button = (Button) findViewById(view.getId());
         switch (view.getId()){
 
             case R.id.num0Button:
+
                 //Todo:implement
                 break;
             case R.id.num1Button:
@@ -132,8 +160,6 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.voiceButton:
                 //Todo:implement
                 break;
-
-
         }
     }
 }
