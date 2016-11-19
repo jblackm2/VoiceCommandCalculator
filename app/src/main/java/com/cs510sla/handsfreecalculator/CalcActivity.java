@@ -88,7 +88,7 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         Button equalsButton = (Button) findViewById(R.id.equalsButton);
         equalsButton.setOnClickListener(this);
 
-        Button percButton = (Button) findViewById(R.id.percentButton);
+        Button percButton = (Button) findViewById(R.id.modButton);
         percButton.setOnClickListener(this);
 
         Button posNegButton = (Button) findViewById(R.id.posNegButton);
@@ -124,10 +124,10 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.divButton:
                 //Todo:implement
-                break;*/
-            case R.id.percentButton:
-                //Todo:implement
                 break;
+            case R.id.modButton:
+                //Todo:implement
+                break;*/
             case R.id.posNegButton:
                 changePosNeg();
                 break;
