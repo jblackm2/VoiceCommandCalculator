@@ -33,8 +33,8 @@
             android:id="@+id/posNegButton"
             android:text="@string/pos_neg"/>
         <Button
-            android:id="@+id/percentButton"
-            android:text="@string/percent"/>
+            android:id="@+id/modButton"
+            android:text="@string/modulo"/>
         <Button
             android:id="@+id/divButton"
             android:text="@string/divide"/>

@@ -3,7 +3,7 @@
     <string name="title_activity_calc">CalcActivity</string>
     <string name="clear">AC</string>
     <string name="pos_neg">+/-</string>
-    <string name="percent">%</string>
+    <string name="mod">%</string>
     <string name="divide">/</string>
     <string name="_7">7</string>
     <string name="_8">8</string>
@@ -21,4 +21,5 @@
     <string name="decimal">.</string>
     <string name="equals">=</string>
     <string name="voice_button">Press for voice only</string>
+    <string name="modulo">%</string>
 </resources>
