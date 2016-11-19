@@ -21,6 +21,18 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         return (String) answerText.getText();
     }
 
+    private void changePosNeg() {
+    }
+
+    private void initVoice() {
+    }
+
+    private void calculateAnswer() {
+    }
+
+    private void clearText() {
+    }
+
     public CalcActivity(){
         answerText = null;
         screenFormula = "";
@@ -30,8 +42,6 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
-
-        CalcActivity calcActivity = new CalcActivity();
 
         Button zeroButton = (Button) findViewById(R.id.num0Button);
         zeroButton.setOnClickListener(this);
@@ -90,8 +100,6 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         Button voiceButton = (Button) findViewById(R.id.voiceButton);
         voiceButton.setOnClickListener(this);
 
-        String screenFormula = "";
-
         TextView answerText = (TextView) findViewById(R.id.answerText);
 
         answerText.setText(screenFormula);
@@ -102,41 +110,10 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         Button button = (Button) findViewById(view.getId());
         switch (view.getId()){
 
-            case R.id.num0Button:
-
-                //Todo:implement
-                break;
-            case R.id.num1Button:
-                //Todo:implement
-                break;
-            case R.id.num2Button:
-                //Todo:implement
-                break;
-            case R.id.num3Button:
-                //Todo:implement
-                break;
-            case R.id.num4Button:
-                //Todo:implement
-                break;
-            case R.id.num5Button:
-                //Todo:implement
-                break;
-            case R.id.num6Button:
-                //Todo:implement
-                break;
-            case R.id.num7Button:
-                //Todo:implement
-                break;
-            case R.id.num8Button:
-                //Todo:implement
-                break;
-            case R.id.num9Button:
-                //Todo:implement
-                break;
             case R.id.equalsButton:
-                //Todo:implement
+                calculateAnswer();
                 break;
-            case R.id.plusButton:
+            /*case R.id.plusButton:
                 //Todo:implement
                 break;
             case R.id.minusButton:
@@ -147,19 +124,23 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.divButton:
                 //Todo:implement
-                break;
+                break;*/
             case R.id.percentButton:
                 //Todo:implement
                 break;
             case R.id.posNegButton:
-                //Todo:implement
+                changePosNeg();
                 break;
             case R.id.clearButton:
-                //Todo:implement
+                clearText();
                 break;
             case R.id.voiceButton:
-                //Todo:implement
+                initVoice();
                 break;
+            //should catch all buttons where the text is what we want input
+            default:
+                setAnswerText(String.valueOf(button.getText()));
         }
     }
+
 }

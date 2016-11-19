@@ -63,7 +63,6 @@
             android:id="@+id/minusButton"
             android:text="@string/minus"/>
         <Button
-
             android:id="@+id/num1Button"
             android:text="@string/_1"/>
         <Button
@@ -93,8 +92,8 @@
             android:layout_gravity="fill"
             android:layout_marginTop="60dp"/>
 
-
     </GridLayout>
+
 </LinearLayout>
 
 
