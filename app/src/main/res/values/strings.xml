@@ -22,4 +22,5 @@
     <string name="equals">=</string>
     <string name="voice_button">Press for voice only</string>
     <string name="modulo">%</string>
+    <string name="prompt">Say your calculation.</string>
 </resources>
