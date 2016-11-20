@@ -19,61 +19,10 @@ import java.util.Locale;
 public class CalcActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView answerText;
-    private String screenFormula;
     private TextToSpeech tts;
     private final int REQ_SPEECH_INPUT_CODE = 100;
 
-    public void setAnswerText(String text) {
-        answerText.setText(text);
-    }
 
-    public String getAnswerText() {
-        return (String) answerText.getText();
-    }
-
-    private void changePosNeg() {
-    }
-
-
-
-    private void calculateAnswer() {
-        BigDecimal result = null;
-
-        Expression expression = new Expression(answerText.getText().toString());
-        result = expression.eval();
-        setAnswerText(String.valueOf(result));
-        convertTTS(String.valueOf(result));
-    }
-
-    private void clearText() {
-        setAnswerText("");
-    }
-
-    private void addButtonInput(Button button) {
-        String currentAnswerText = getAnswerText();
-        setAnswerText(currentAnswerText + String.valueOf(button.getText()));
-    }
-
-    private void initVoice() {
-        Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        speechIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.prompt));
-
-        startActivityForResult(speechIntent, REQ_SPEECH_INPUT_CODE);
-    }
-
-    public void convertTTS(String text){
-        if (text.length() > 0){
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-        }
-    }
-
-
-    public CalcActivity(){
-        answerText = null;
-        screenFormula = "";
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,9 +86,8 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         Button voiceButton = (Button) findViewById(R.id.voiceButton);
         voiceButton.setOnClickListener(this);
 
-        TextView answerText = (TextView) findViewById(R.id.answerText);
-
-        answerText.setText(screenFormula);
+        answerText = (TextView) findViewById(R.id.answerText);
+        answerText.setText("");
 
         tts = new TextToSpeech(CalcActivity.this, new TextToSpeech.OnInitListener() {
             @Override
@@ -200,6 +148,50 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
                 setAnswerText(calculation.get(0));
                 calculateAnswer();
             }
+        }
+    }
+
+    public void setAnswerText(String text) {
+        answerText.setText(text);
+    }
+
+    public String getAnswerText() {
+        return (String) answerText.getText();
+    }
+
+    private void changePosNeg() {
+    }
+
+    private void calculateAnswer() {
+        BigDecimal result = null;
+
+        Expression expression = new Expression(answerText.getText().toString());
+        result = expression.eval();
+        setAnswerText(String.valueOf(result));
+        convertTTS(String.valueOf(result));
+    }
+
+    private void clearText() {
+        setAnswerText("");
+    }
+
+    private void addButtonInput(Button button) {
+        String currentAnswerText = getAnswerText();
+        setAnswerText(currentAnswerText + String.valueOf(button.getText()));
+    }
+
+    private void initVoice() {
+        Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        speechIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.prompt));
+
+        startActivityForResult(speechIntent, REQ_SPEECH_INPUT_CODE);
+    }
+
+    public void convertTTS(String text){
+        if (text.length() > 0){
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
         }
     }
 
