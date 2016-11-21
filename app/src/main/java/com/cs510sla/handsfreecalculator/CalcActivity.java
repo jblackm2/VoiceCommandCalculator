@@ -13,6 +13,7 @@ import com.udojava.evalex.Expression;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 
@@ -21,6 +22,13 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     private TextView answerText;
     private TextToSpeech tts;
     private final int REQ_SPEECH_INPUT_CODE = 100;
+    private final String TIMES = "*";
+    private final String MINUS = "-";
+    private final String PLUS = "+";
+    private final String DIVIDE = "/";
+    private final String MOD = "%";
+    private final String NEG = "-";
+    private static final String DEC = ".";
 
 
 
@@ -83,6 +91,9 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         Button clearButton = (Button) findViewById(R.id.clearButton);
         clearButton.setOnClickListener(this);
 
+        Button decimalButton = (Button) findViewById(R.id.decimalButton);
+        decimalButton.setOnClickListener(this);
+
         Button voiceButton = (Button) findViewById(R.id.voiceButton);
         voiceButton.setOnClickListener(this);
 
@@ -139,18 +150,6 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    protected void onActivityResult(int reqCode, int resCode, Intent data){
-        ArrayList<String> calculation = new ArrayList<>();
-        if(reqCode == REQ_SPEECH_INPUT_CODE){
-            if(resCode == RESULT_OK && data != null){
-                calculation = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                setAnswerText(calculation.get(0));
-                calculateAnswer();
-            }
-        }
-    }
-
     public void setAnswerText(String text) {
         answerText.setText(text);
     }
@@ -187,6 +186,62 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         speechIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.prompt));
 
         startActivityForResult(speechIntent, REQ_SPEECH_INPUT_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int reqCode, int resCode, Intent data){
+        ArrayList<String> calculation = new ArrayList<>();
+        if(reqCode == REQ_SPEECH_INPUT_CODE){
+            if(resCode == RESULT_OK && data != null){
+                calculation = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                if (calculation.get(0).toLowerCase().contains("clear")) {
+                    clearText();
+                }
+                else{
+                    String filteredCalculation = filterInput(calculation.get(0).toLowerCase());
+                    setAnswerText(getAnswerText() + filteredCalculation);
+                    calculateAnswer();
+                }
+            }
+        }
+    }
+
+    //Function to filter out non-operand terms like 'plus', 'times'
+    private String filterInput(String input) {
+
+        //TODO: how to deal with '.5' as part of an input. Some how recognize and append '0'?
+
+        String[] splitInput;
+        splitInput = input.split(" ");
+        String result = "";
+        HashMap<String, String> newValueMap = new HashMap<>();
+        newValueMap.put("x",TIMES);
+        newValueMap.put("times", TIMES);
+        newValueMap.put("multiplied", TIMES);
+        newValueMap.put("multiply", TIMES);
+        newValueMap.put("plus", PLUS);
+        newValueMap.put("minus", MINUS);
+        newValueMap.put("subtract", MINUS);
+        newValueMap.put("÷", DIVIDE);
+        newValueMap.put("divide", DIVIDE);
+        newValueMap.put("divided", DIVIDE);
+        newValueMap.put("mod", MOD);
+        newValueMap.put("modulo", MOD);
+        newValueMap.put("neg", NEG);
+        newValueMap.put("negative", NEG);
+        newValueMap.put("point", DEC);
+        newValueMap.put("by", "");
+        newValueMap.put("bye", "");
+
+        for (int i = 0; i < splitInput.length; i++){
+            if (newValueMap.containsKey(splitInput[i])){//if the string contains a matching term
+                result += newValueMap.get(splitInput[i]);
+            }
+            else{
+                result += splitInput[i];
+            }
+        }
+        return result;
     }
 
     public void convertTTS(String text){
