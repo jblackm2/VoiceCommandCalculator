@@ -159,6 +159,8 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void changePosNeg() {
+        String currentAnswerText = getAnswerText();
+        setAnswerText(currentAnswerText + "-");
     }
 
     private void calculateAnswer() {
@@ -170,7 +172,7 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         convertTTS(String.valueOf(result));
     }
 
-    private void clearText() {
+    protected void clearText() {
         setAnswerText("");
     }
 
