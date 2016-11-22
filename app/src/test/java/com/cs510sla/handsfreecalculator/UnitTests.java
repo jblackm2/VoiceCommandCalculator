@@ -122,4 +122,19 @@ public class UnitTests {
         res = calc.filterInput("4 plus 3 point 4");
         Assert.assertEquals("4+3.4", res);
     }
+    @Test
+    public void testSetAndGet(){
+        calc.setAnswerText("1+2*3/4.5%6+-7");
+        String res = "";
+        res = calc.getAnswerText();
+        Assert.assertEquals("1+2*3/4.5%6+-7", res);
+    }
+    @Test
+    public void testSetAndClear(){
+        calc.setAnswerText("1+2*3/4.5%6+-7");
+        String res = "";
+        calc.clearText();
+        res = calc.getAnswerText();
+        Assert.assertEquals("", res);
+    }
 }
