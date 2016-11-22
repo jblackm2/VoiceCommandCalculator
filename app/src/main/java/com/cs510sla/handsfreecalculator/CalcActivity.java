@@ -209,8 +209,6 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     //Function to filter out non-operand terms like 'plus', 'times'
     private String filterInput(String input) {
 
-        //TODO: how to deal with '.5' as part of an input. Some how recognize and append '0'?
-
         String[] splitInput;
         splitInput = input.split(" ");
         String result = "";
@@ -235,7 +233,10 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
 
         for (int i = 0; i < splitInput.length; i++){
             if (newValueMap.containsKey(splitInput[i])){//if the string contains a matching term
-                result += newValueMap.get(splitInput[i]);
+                result += newValueMap.get(splitInput[i]);//replace it with the operand in the hashtable
+            }
+            else if (splitInput[i].startsWith(".")){//If someone says .5, this will append a 0
+                result += ("0" + splitInput[i]);
             }
             else{
                 result += splitInput[i];
