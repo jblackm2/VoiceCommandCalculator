@@ -207,7 +207,7 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //Function to filter out non-operand terms like 'plus', 'times'
-    private String filterInput(String input) {
+    protected String filterInput(String input) {
 
         String[] splitInput;
         splitInput = input.split(" ");
