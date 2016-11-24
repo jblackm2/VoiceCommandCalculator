@@ -19,7 +19,7 @@ import java.util.Locale;
 
 public class CalcActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView answerText;
+    public TextView answerText;
     private TextToSpeech tts;
     private final int REQ_SPEECH_INPUT_CODE = 100;
     private final String TIMES = "*";
@@ -29,7 +29,6 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     private final String MOD = "%";
     private final String NEG = "-";
     private static final String DEC = ".";
-
 
 
     @Override
