@@ -127,7 +127,15 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        Button button = (Button) findViewById(view.getId());
+        ImageButton imgButton = null;
+        Button button = null;
+        if (view.getId() == R.id.voiceButton) {
+            imgButton = (ImageButton) findViewById(view.getId());
+        }
+        else {
+            button = (Button) findViewById(view.getId());
+        }
+
         switch (view.getId()){
 
             case R.id.equalsButton:
@@ -245,12 +253,29 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         newValueMap.put("point", DEC);
         newValueMap.put("by", "");
         newValueMap.put("bye", "");
+        newValueMap.put("parenthesis", "");
+        newValueMap.put("parentheses", "");
+        newValueMap.put("left", "");
+        newValueMap.put("right", "");
+        newValueMap.put("open", "");
+        newValueMap.put("close", "");
 
         for (int i = 0; i < splitInput.length; i++){
             if (newValueMap.containsKey(splitInput[i])){//if the string contains a matching term
-                result += newValueMap.get(splitInput[i]);//replace it with the operand in the hashtable
+                if (splitInput[i].contains("parenthes") && i > 0) {
+                    if (splitInput[i-1].equalsIgnoreCase("left") || splitInput[i-1].equalsIgnoreCase("open")) {
+                        result += "(";
+                    }
+                    else if (splitInput[i-1].equalsIgnoreCase("right") || splitInput[i-1].equalsIgnoreCase("close")) {
+                        result += ")";
+                    }
+                }
+                else {
+                    result += newValueMap.get(splitInput[i]);//replace it with the operand in the hashtable
+                    //splitInput[i] = newValueMap.get(splitInput[i]);
+                }
             }
-            else if (splitInput[i].startsWith(".")){//If someone says .5, this will append a 0
+            else if (splitInput[i].startsWith(".") || splitInput[i].startsWith("point")){//If someone says .5, this will append a 0
                 result += ("0" + splitInput[i]);
             }
             else{
