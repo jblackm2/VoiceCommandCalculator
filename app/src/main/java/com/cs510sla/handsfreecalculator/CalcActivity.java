@@ -7,12 +7,14 @@ import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.udojava.evalex.Expression;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -93,7 +95,19 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         Button decimalButton = (Button) findViewById(R.id.decimalButton);
         decimalButton.setOnClickListener(this);
 
-        Button voiceButton = (Button) findViewById(R.id.voiceButton);
+        Button leftParenButton = (Button) findViewById(R.id.leftParenButton);
+        leftParenButton.setOnClickListener(this);
+
+        Button rightParenButton = (Button) findViewById(R.id.rightParenButton);
+        rightParenButton.setOnClickListener(this);
+
+        Button powerButton = (Button) findViewById(R.id.powerButton);
+        powerButton.setOnClickListener(this);
+
+        Button sqrtButton = (Button) findViewById(R.id.piButton);
+        sqrtButton.setOnClickListener(this);
+
+        ImageButton voiceButton = (ImageButton) findViewById(R.id.voiceButton);
         voiceButton.setOnClickListener(this);
 
         answerText = (TextView) findViewById(R.id.answerText);
@@ -119,21 +133,6 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.equalsButton:
                 calculateAnswer();
                 break;
-            /*case R.id.plusButton:
-                //Todo:implement
-                break;
-            case R.id.minusButton:
-                //Todo:implement
-                break;
-            case R.id.timesButton:
-                //Todo:implement
-                break;
-            case R.id.divButton:
-                //Todo:implement
-                break;
-            case R.id.modButton:
-                //Todo:implement
-                break;*/
             case R.id.posNegButton:
                 changePosNeg();
                 break;
@@ -166,7 +165,22 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         BigDecimal result = null;
 
         Expression expression = new Expression(answerText.getText().toString());
-        result = expression.eval();
+        try {
+            result = expression.eval();
+        }
+        catch (Exception e) {
+            showError("Illegal calculation.");
+            return;
+        }
+        showResults(result);
+    }
+
+    private void showError(String error) {
+        setAnswerText(error);
+        convertTTS(error);
+    }
+
+    private void showResults(BigDecimal result) {
         setAnswerText(String.valueOf(result));
         convertTTS(String.valueOf(result));
     }
