@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="equalsButton">#FFFF00</color>
+    <color name="defaultButton">#504e64</color>
+    <color name="pressedButton">#736f84</color>
+    <color name="buttonText">#ffffff</color>
+    <color name="answerBoxBackground">#414153</color>
+    <color name="answerBoxText">#ffffff</color>
 </resources>
