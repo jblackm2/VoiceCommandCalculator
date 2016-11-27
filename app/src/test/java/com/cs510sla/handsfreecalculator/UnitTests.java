@@ -120,4 +120,34 @@ public class UnitTests {
         res = calc.filterInput("4 plus 3 point 4");
         Assert.assertEquals("4+3.4", res);
     }
+    @Test
+    public void filterTestPass18(){
+        String res = "";
+        res = calc.filterInput("left parenthesis 5 plus 6 right paren");
+        Assert.assertEquals("(5+6)", res);
+    }
+    @Test
+    public void filterTestPass19(){
+        String res = "";
+        res = calc.filterInput("left paren 4 plus 3 point 4 right parentheses");
+        Assert.assertEquals("(4+3.4)", res);
+    }
+    @Test
+    public void filterTestPass20(){ //Should result in a an illegal calculation, but should filter without error
+        String res = "";
+        res = calc.filterInput("left 4 plus 3 point 4 right parenthesis");
+        Assert.assertEquals("4+3.4)", res);
+    }
+    @Test
+    public void filterTestPass21(){
+        String res = "";
+        res = calc.filterInput("2 to the power of 3");
+        Assert.assertEquals("2^3", res);
+    }
+    @Test
+    public void filterTestPass22(){
+        String res = "";
+        res = calc.filterInput("2 raised to 3");
+        Assert.assertEquals("2^3", res);
+    }
 }
