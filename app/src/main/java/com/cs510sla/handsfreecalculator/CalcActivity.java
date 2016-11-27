@@ -30,7 +30,9 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     private final String DIVIDE = "/";
     private final String MOD = "%";
     private final String NEG = "-";
-    private static final String DEC = ".";
+    private final String DEC = ".";
+    private final String POW = "^";
+
 
 
     @Override
@@ -251,10 +253,16 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         newValueMap.put("neg", NEG);
         newValueMap.put("negative", NEG);
         newValueMap.put("point", DEC);
+        newValueMap.put("power", POW);
+        newValueMap.put("raised", POW);
+        newValueMap.put("to", "");
+        newValueMap.put("of", "");
+        newValueMap.put("the", "");
         newValueMap.put("by", "");
         newValueMap.put("bye", "");
         newValueMap.put("parenthesis", "");
         newValueMap.put("parentheses", "");
+        newValueMap.put("paren", "");
         newValueMap.put("left", "");
         newValueMap.put("right", "");
         newValueMap.put("open", "");
@@ -262,7 +270,7 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
 
         for (int i = 0; i < splitInput.length; i++){
             if (newValueMap.containsKey(splitInput[i])){//if the string contains a matching term
-                if (splitInput[i].contains("parenthes") && i > 0) {
+                if (splitInput[i].contains("paren") && i > 0) {
                     if (splitInput[i-1].equalsIgnoreCase("left") || splitInput[i-1].equalsIgnoreCase("open")) {
                         result += "(";
                     }
