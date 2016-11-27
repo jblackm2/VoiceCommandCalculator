@@ -192,7 +192,7 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showResults(BigDecimal result) {
         setAnswerText(String.valueOf(result));
-        convertTTS(String.valueOf(result));
+        convertTTS("The answer is " + String.valueOf(result));
     }
 
     protected void clearText() {
