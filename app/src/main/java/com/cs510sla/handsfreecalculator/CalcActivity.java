@@ -178,8 +178,12 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         try {
             result = expression.eval();
         }
-        catch (Exception e) {
-            showError("Illegal calculation.");
+        catch (EmptyStackException e) {
+            showError("Empty stack error.");
+            return;
+        }
+        catch (Expression.ExpressionException e) {
+            showError(e.getMessage());
             return;
         }
         showResults(result);
