@@ -186,6 +186,10 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
             showError(e.getMessage());
             return;
         }
+        catch (RuntimeException e) {
+            showError(e.getMessage());
+            return;
+        }
         showResults(result);
     }
 
