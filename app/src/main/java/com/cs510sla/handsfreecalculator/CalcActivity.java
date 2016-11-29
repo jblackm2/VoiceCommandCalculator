@@ -187,7 +187,9 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         catch (RuntimeException e) {
-            showError(e.getMessage());
+            String regex = "\\d";
+
+            showError(e.getMessage().replaceAll(regex, ""));
             return;
         }
         showResults(result);
@@ -251,9 +253,12 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         newValueMap.put("multiplied", TIMES);
         newValueMap.put("multiply", TIMES);
         newValueMap.put("plus", PLUS);
+        newValueMap.put("added", PLUS);
         newValueMap.put("minus", MINUS);
         newValueMap.put("subtract", MINUS);
+        newValueMap.put("subtracted", MINUS);
         newValueMap.put("÷", DIVIDE);
+        newValueMap.put("over", DIVIDE);
         newValueMap.put("divide", DIVIDE);
         newValueMap.put("divided", DIVIDE);
         newValueMap.put("mod", MOD);
@@ -264,6 +269,7 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         newValueMap.put("power", POW);
         newValueMap.put("raised", POW);
         newValueMap.put("to", "");
+        newValueMap.put("from", "");
         newValueMap.put("of", "");
         newValueMap.put("the", "");
         newValueMap.put("by", "");
